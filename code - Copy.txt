@@ -1,0 +1,296 @@
+import csv
+import scipy
+import pandas as pd
+import numpy as np
+from sklearn import preprocessing
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import Imputer
+from sklearn.metrics import classification_report, confusion_matrix
+
+
+
+#with open('helen 1.csv', 'r') as csv_file:
+    #csv_reader = csv.reader(csv_file)
+
+    #for line in csv_reader:
+        #print(line)
+
+# for data set 1--disabled series
+csv_reader = pd.read_csv('helen 1.csv')
+
+print( csv_reader.shape)
+
+
+#print(csv_reader.iloc[:,:])
+
+k=((csv_reader.iloc[:, 2]), csv_reader.iloc[:,3],)
+op=(csv_reader.iloc[:,:15])
+
+print(k)
+print(op)
+print(csv_reader.index)
+
+print((csv_reader.iloc[:, 2]).mean())
+
+df = pd.DataFrame(op)
+print(df)
+
+# for changing the data format of the mixed value
+cols = ['eegRawValueVolts']
+
+for  col in cols:
+    op[col] = op[col].astype(dtype = np.str)
+    op.info()
+
+# for min-max normalisation
+min_max_scaler = preprocessing.MinMaxScaler()
+scaled_array = min_max_scaler.fit_transform(op)
+
+
+csv_reader_normalized = pd.DataFrame(scaled_array)
+print(csv_reader_normalized )
+print(csv_reader_normalized.shape)
+
+# mean of each column
+print((csv_reader_normalized.iloc[:,3]).mean())
+print((csv_reader_normalized.iloc[:,4]).mean())
+print((csv_reader_normalized.iloc[:,5]).mean())
+print((csv_reader_normalized.iloc[:,6]).mean())
+print((csv_reader_normalized.iloc[:,7]).mean())
+print((csv_reader_normalized.iloc[:,8]).mean())
+print((csv_reader_normalized.iloc[:,9]).mean())
+print((csv_reader_normalized.iloc[:,10]).mean())
+print((csv_reader_normalized.iloc[:,11]).mean())
+print((csv_reader_normalized.iloc[:,12]).mean())
+print((csv_reader_normalized.iloc[:,13]).mean())
+print((csv_reader_normalized.iloc[:,14]).mean())
+
+#standard deviation for each column
+print('..',(csv_reader_normalized.iloc[:,14]).std())
+
+print('conversion of dtaframe into one column')
+
+std_read = (csv_reader_normalized.stack().std())
+mean_read = (csv_reader_normalized.stack().mean())
+
+
+print(std_read)
+print('..',mean_read)
+print(std_read.shape)
+
+
+tk_1=np.mean(std_read)
+pk_1=np.std(std_read)
+
+#for data set 1-- normal series
+
+csv_reader1 = pd.read_csv('sheetal 1.csv')
+
+print(csv_reader1.shape)
+
+#print(csv_reader1.iloc[:,:])
+
+ky=((csv_reader1.iloc[:, 2]), csv_reader1.iloc[:,3],)
+opj=(csv_reader1.iloc[:,:15])
+
+print(opj,k)
+print(csv_reader1.index)
+
+
+df = pd.DataFrame(opj)
+print(df)
+
+cols = ['eegRawValueVolts']
+
+for  col in cols:
+    opj[col] = opj[col].astype(dtype = np.float64)
+    opj.info()
+
+
+min_max_scaler = preprocessing.MinMaxScaler()
+scaled_array1 = min_max_scaler.fit_transform(opj)
+
+csv_reader_normalized2 = pd.DataFrame(scaled_array1)
+print( csv_reader_normalized2 )
+print( csv_reader_normalized2.shape)
+
+
+# mean of each column
+print((csv_reader_normalized2.iloc[:,3]).mean())
+print((csv_reader_normalized2.iloc[:,4]).mean())
+print((csv_reader_normalized2.iloc[:,5]).mean())
+print((csv_reader_normalized2.iloc[:,6]).mean())
+print((csv_reader_normalized2.iloc[:,7]).mean())
+print((csv_reader_normalized2.iloc[:,8]).mean())
+print((csv_reader_normalized2.iloc[:,9]).mean())
+print((csv_reader_normalized2.iloc[:,10]).mean())
+print((csv_reader_normalized2.iloc[:,11]).mean())
+print((csv_reader_normalized2.iloc[:,12]).mean())
+print((csv_reader_normalized2.iloc[:,13]).mean())
+print((csv_reader_normalized2.iloc[:,14]).mean())
+
+#standard deviation for each column
+print('..',(csv_reader_normalized2.iloc[:,14]).std())
+
+print('conversion of dtaframe into one column')
+
+std_readi = (csv_reader_normalized2.stack().std())
+mean_readi = (csv_reader_normalized2.stack().mean())
+
+
+print(std_readi)
+print('..',mean_readi)
+print(std_readi.shape)
+
+
+tk_1=np.mean(std_readi)
+pk_1=np.std(std_readi)
+
+# for data set 2-- disabled series
+
+csv_reader0 = pd.read_csv('srinivasan 1.csv')
+
+print(csv_reader0.shape)
+
+#print(csv_reader0.iloc[:,:])
+
+kyk=((csv_reader0.iloc[:, 2]), csv_reader0.iloc[:,3],)
+opl=(csv_reader0.iloc[:,:15])
+
+print(opl,kyk)
+print(csv_reader0.index)
+
+
+df = pd.DataFrame(opl)
+print(df)
+
+cols = ['eegRawValueVolts']
+
+for  col in cols:
+    opl[col] = opl[col].astype(dtype = np.float64)
+    opl.info()
+
+
+min_max_scaler = preprocessing.MinMaxScaler()
+scaled_array2 = min_max_scaler.fit_transform(opl)
+
+csv_reader_normalized_0 = pd.DataFrame(scaled_array2)
+print( csv_reader_normalized_0 )
+
+# for data set 2-- normal series
+
+csv_reader5 = pd.read_csv('mangal 1.csv')
+
+print(csv_reader5.shape)
+
+#print(csv_reader5.iloc[:,:])
+
+kjk=((csv_reader5.iloc[:, 2]), csv_reader5.iloc[:,3],)
+
+opo=(csv_reader5.iloc[:,:15])
+
+print(opo,kjk)
+print(csv_reader5.index)
+
+
+df = pd.DataFrame(opo)
+print(df)
+
+cols = ['eegRawValueVolts']
+
+for  col in cols:
+    opo[col] = opo[col].astype(dtype = np.float64)
+    opo.info()
+
+
+min_max_scaler = preprocessing.MinMaxScaler()
+scaled_array3 = min_max_scaler.fit_transform(opo)
+
+csv_reader_normalized_3 = pd.DataFrame(scaled_array3)
+print( csv_reader_normalized_3 )
+
+# applying knn algorithm
+
+X = (csv_reader_normalized.iloc[:,:14])
+X = X.drop(X.columns[[0, 1, 2, 3]], axis=1)
+X2 = (csv_reader_normalized2.iloc[:20390,:14])
+X2 = X2.drop(X2.columns[[0,1,2,3]], axis=1)
+X3 = (csv_reader_normalized_0.iloc[:20390,:14])
+X3 = X3.drop(X3.columns[[0,1,2,3]], axis=1)
+X4 = (csv_reader_normalized_3.iloc[:20390,:14])
+X4 = X4.drop(X4.columns[[0,1,2,3]], axis=1)
+
+
+print(X)
+print(X.describe())
+print(X.shape)
+print(X2)
+print(X2.describe())
+print(X2.shape)
+print(X3)
+print(X3.describe())
+print(X3.shape)
+print(X4)
+print(X4.describe())
+print(X4.shape)
+
+
+
+
+K_t = (csv_reader_normalized.iloc[:10195,2])
+print(K_t)
+R_t = (csv_reader_normalized.iloc[:10195,3])
+print(R_t)
+
+hic = [K_t,R_t]
+y = pd.concat(hic)
+print(y)
+
+print(y.shape)
+print(y.describe())
+
+K1_t = (csv_reader_normalized2.iloc[:10195,2])
+print(K1_t)
+R1_t = (csv_reader_normalized2.iloc[:10195,3])
+print(R1_t)
+
+hic1 = [K1_t,R1_t]
+yi = pd.concat(hic1)
+print(yi)
+print(yi.shape)
+print(yi.describe())
+
+K2_t = (csv_reader_normalized_0.iloc[:10195,2])
+print(K_t)
+R2_t = (csv_reader_normalized_0.iloc[:10195,3])
+print(R_t)
+
+hic3 = [K2_t,R2_t]
+yj = pd.concat(hic3)
+print(yj)
+print(yj.shape)
+print(yj.describe())
+
+K4_t = (csv_reader_normalized_3.iloc[:10195,2])
+print(K4_t)
+R4_t = (csv_reader_normalized_3.iloc[:10195,3])
+print(R4_t)
+
+hic4 = [K4_t,R4_t]
+yy = pd.concat(hic4)
+
+print(yy)
+print(yy.shape)
+print(yy.describe())
+
+
+
+#X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.22, random_state=125, stratify=y )
+#knn = KNeighborsClassifier(n_neighbors = 3)
+#knn.fit(X_train,y_train)
+#predictor_1 = knn.predict(X_test)
+#print(predictor_1)
